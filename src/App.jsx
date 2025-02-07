@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import Counter from './components/Counter'
-import TodoList from './components/TodoList'
+import CopyInput from './components/CopyInput'
 
 
 const App = () => {
@@ -10,7 +9,7 @@ const App = () => {
     <section>
       <h1>Hello</h1>
 
-      <TodoList/>
+      <CopyInput/>
       
     </section>
   )

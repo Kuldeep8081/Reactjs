@@ -2,12 +2,22 @@ import React, { useState } from 'react'
 
 const TodoList = () => {
 
-    let str="";
 
     const [todoItems, settodoItems]=useState([]);
+    const [inputValue, setInputValue]=useState("");
 
-    const addItem=()=>{
-        settodoItems([...todoItems, str])
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+
+        if(inputValue.trim()){
+          settodoItems([...todoItems,inputValue]);
+
+          setInputValue("");
+        }
+    };
+
+    const handleChange=(e)=>{
+      setInputValue(e.target.value)
     }
 
   return (
@@ -16,14 +26,19 @@ const TodoList = () => {
 
     <div>TodoList</div>
     
+    <form onSubmit={handleSubmit}>
+    
+      <input type="text" value={inputValue} onChange={handleChange} placeholder='Add a new todo' name="" id="" />
 
-    {todoItems.map((item)=>(
-        <li key={Math.random()}>{item}</li>
-    ))}
+      <button type='submit'>Add item to todoList</button>
+    </form>
 
-    <input type="text" name="" id="" onChange={str} placeholder='Enter items to add'  />
+    <ul>
+      {todoItems.map((todo,index)=>(
+        <li key={index}>{todo}</li>
+      ))}
+    </ul>
 
-    <button onClick={addItem}>Add item to todoList</button>
 
     </section>
   )
